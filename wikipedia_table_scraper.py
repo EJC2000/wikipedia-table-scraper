@@ -61,17 +61,15 @@ def multi_wikitable(soup, title):
 
 def sort_csv_to_folder(base_path, keyword):
     keyword = keyword.lower()
+    folder_name = fr"{keyword.capitalize()} Folder"
+    folder_path = os.path.join(base_path, folder_name)
+    
+    os.makedirs(folder_path)
+    print(f"Folder: {folder_name} created at {folder_path}")
     
     for file_name in os.listdir(base_path):
-        if file_name.endswith(".csv") and keyword in file_name.lower():
-            folder_name = fr"{keyword.capitalize()} Folder"
-            folder_path = os.path.join(base_path, folder_name)
-            
-            if not os.path.exists(folder_path):
-                os.makedirs(folder_path)
-                
+        if file_name.endswith(".csv") and keyword in file_name.lower():              
             source_path = os.path.join(base_path, file_name)
             destination_path = os.path.join(folder_path, file_name)
             shutil.move(source_path, destination_path)
-            
             print(f"Moved {file_name} to {destination_path}")
