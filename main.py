@@ -46,3 +46,6 @@ def main():
             break
         else:
             print("Please select an option.")
+
+if __name__ == "__main__":
+    main()
