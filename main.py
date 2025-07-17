@@ -1,4 +1,5 @@
 import time
+import shutil
 import os
 from wikipedia_table_scraper import get_url_info, one_wikitable, multi_wikitable, sort_csv_to_folder
 
@@ -40,6 +41,21 @@ def main():
                 
             keyword = input("Enter folder name: ")
             sort_csv_to_folder(base_path, keyword)
+            new_choice = input(f"Move ALL files from {base_path} into the {keyword.capitalize()} Folder? Y/N")
+            folder_path = os.path.join(base_path, f"{keyword.capitalize()} Folder")
+            if new_choice.lower() == 'y':
+                for file in os.listdir(base_path):
+                    source_path = os.path.join(base_path, file)
+                    
+                    if (source_path == folder_path
+                        or not os.path.isfile(source_path)
+                        or not file.endswith(".csv")):
+                        continue
+                    
+                    destination_path = os.path.join(folder_path, file)
+                    shutil.move(source_path, destination_path)
+                    print(f"Moved {file} to {destination_path}")
+                    
         elif choice == "5":
             print("Exiting program..")
             time.sleep(1)
