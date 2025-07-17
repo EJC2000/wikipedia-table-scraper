@@ -28,7 +28,7 @@ def one_wikitable(soup, title):
             rows_data = []
             
             for column in columns:
-                text = columns.text.strip()
+                text = column.text.strip()
                 rows_data.append(text)
                 
                 if rows_data:
