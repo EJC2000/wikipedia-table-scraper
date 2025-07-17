@@ -20,7 +20,7 @@ def one_wikitable(soup, title):
     rows = table.find_all("tr")
     
     filename = f"{title}_table.csv"
-    with open(filename, "w", newline='', encoding="uft-8") as file:
+    with open(filename, "w", newline='', encoding="utf-8") as file:
         writer = csv.writer(file)
         
         for row in rows:
